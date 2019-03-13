@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Proiect_1</string>
+
+    <string name="btn_F1A1">Go to Second Activity</string>
+    <string name="btn_F1A2">Add F2A2</string>
+    <string name="btn_F2A2_1">Replace</string>
+    <string name="btn_F2A2_2">Remove F1A2</string>
+    <string name="btn_F2A2_3">Close A2</string>
+
+    <string name="fragment_F3A2">This is Fragment F3A2</string>
+</resources>
