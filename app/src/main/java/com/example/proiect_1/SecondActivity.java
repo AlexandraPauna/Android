@@ -19,10 +19,16 @@ public class SecondActivity extends AppCompatActivity implements OnActivityFragm
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        /*super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer1,new F1A2(), FRAGMENT_TAG);
+        fragmentTransaction.setTransition(fragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        fragmentTransaction.commit();*/
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer1,new F3A2(), FRAGMENT_TAG);
         fragmentTransaction.setTransition(fragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
     }

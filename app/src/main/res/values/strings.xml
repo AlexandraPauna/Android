@@ -8,4 +8,10 @@
     <string name="btn_F2A2_3">Close A2</string>
 
     <string name="fragment_F3A2">This is Fragment F3A2</string>
+
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+
+    <string name="btn_add_user">Add</string>
+    <string name="btn_remove_user">Remove</string>
 </resources>
