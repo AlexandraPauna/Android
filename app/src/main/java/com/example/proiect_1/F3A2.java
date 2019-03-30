@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class F3A2 extends Fragment {
 
-    ArrayList<User> users;
+    ArrayList<User> users = new ArrayList<User>();
 
     UsersAdapter usersAdapter;
 
@@ -38,6 +38,13 @@ public class F3A2 extends Fragment {
         // Required empty public constructor
     }
 
+    public void setData(){
+        if(users != null){
+            users.clear();
+            users.addAll(new ApplicationController().getAppDatabase().userDao().getAll());
+        }
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +65,7 @@ public class F3A2 extends Fragment {
                     @Override
                     public void actionSucces() {
                         Toast.makeText(getContext(), "Adaugat cu succes", Toast.LENGTH_SHORT).show();
+                        setData();
                         usersAdapter.notifyDataSetChanged();
                     }
 
@@ -76,17 +84,23 @@ public class F3A2 extends Fragment {
             public void onClick(View v) {
                 User user = new UserRepository(getContext()).getUserByNameString(firstName.getText().toString(), lastName.getText().toString());
 
-                new UserRepository(getContext()).deleteTask(user, new OnUserRepositoryActionListener() {
-                    @Override
-                    public void actionSucces() {
-                        Toast.makeText(getContext(), "Sters cu succes", Toast.LENGTH_SHORT).show();
-                    }
+                if (user != null) {
+                    new UserRepository(getContext()).deleteTask(user, new OnUserRepositoryActionListener() {
+                        @Override
+                        public void actionSucces() {
+                            Toast.makeText(getContext(), "Sters cu succes", Toast.LENGTH_SHORT).show();
+                            setData();
+                            usersAdapter.notifyDataSetChanged();
+                        }
 
-                    @Override
-                    public void actionFailed() {
-                        Toast.makeText(getContext(), "Nu exista!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void actionFailed() {
+                            Toast.makeText(getContext(), "Nu a putut fi sters!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                else
+                    Toast.makeText(getContext(), "Nu exista!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -98,7 +112,7 @@ public class F3A2 extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        users = new ArrayList<User>();
+        //users = new ArrayList<User>();
 
         users.addAll(new ApplicationController().getAppDatabase().userDao().getAll());
 
@@ -115,4 +129,6 @@ public class F3A2 extends Fragment {
         recyclerView.setAdapter(usersAdapter);
 
     }
+
+
 }
